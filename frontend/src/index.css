@@ -1,0 +1,82 @@
+/*
+Utility classes, and other global styles shared by the application
+*/
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  background-color: white;
+  min-height: 100vh;
+  min-width: 100%;
+  color: black;
+}
+
+:root {
+  --primary-blue: #137fec;
+  --primary-gray: #f9fafb;
+  --border-dark-gray: #d1d5db;
+}
+
+body {
+  margin: 0px;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+#root {
+  background-color: white;
+  min-height: 100vh;
+  min-width: 100%;
+  color: black;
+}
+
+:root {
+  --primary-blue: #137fec;
+  --primary-gray: #f9fafb;
+  --border-dark-gray: #d1d5db;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.user-header {
+  font-size: 24px;
+}
+
+a {
+  color: var(--primary-blue);
+}

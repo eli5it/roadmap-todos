@@ -1,0 +1,26 @@
+.circle {
+  border: 1px solid gray;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border-dark-gray);
+}
+.todo-card {
+  display: flex;
+  background-color: white;
+  padding: 0.4rem 0.7rem 0.4rem 0.7rem;
+  gap: 0.6rem;
+  border: 1px solid var(--border-dark-gray);
+  border-radius: 5px;
+}
+
+.todo-card button {
+  background: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.delete-button {
+  border: none;
+  display: flex;
+  align-items: baseline;
+}

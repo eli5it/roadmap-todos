@@ -1,0 +1,51 @@
+{
+  "name": "todo-list-api",
+  "version": "1.0.0",
+  "description": "A basic TypeScript Express API",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "watch": "nodemon --exec ts-node src/index.ts",
+    "db:push": "npx drizzle-kit push",
+    "db:generate": "npx drizzle-kit generate",
+    "db:migrate": "npx drizzle-kit migrate",
+    "test": "NODE_ENV=test vitest run --sequence.concurrent=false",
+    "test:coverage": "NODE_ENV=testvitest run --coverage"
+  },
+  "keywords": [
+    "typescript",
+    "express",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@electric-sql/pglite": "^0.3.7",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.1",
+    "drizzle-orm": "^0.44.4",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3",
+    "postgres": "^3.4.7",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.9",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20.10.0",
+    "@types/pg": "^8.15.5",
+    "@types/supertest": "^6.0.3",
+    "drizzle-kit": "^0.31.4",
+    "nodemon": "^3.0.2",
+    "supertest": "^7.1.4",
+    "ts-node": "^10.9.1",
+    "tsx": "^4.20.4",
+    "typescript": "^5.3.2",
+    "vitest": "^3.2.4"
+  }
+}

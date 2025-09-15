@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "rootDir": ".",
+    "composite": true,
+    "strict": true,
+    "references": [
+      {
+        "path": "../backend"
+      }
+    ]
+  }
+}
