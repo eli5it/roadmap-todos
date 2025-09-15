@@ -1,0 +1,6 @@
+POST http://localhost:8008/api/users/profile-picture
+Content-Type: application/json
+
+{
+    "fileType": "image/png"
+}

@@ -16,11 +16,11 @@ import {
 } from "../db/queries/todos";
 
 export async function createTodo(req: Request, res: Response) {
+  const user = req.user;
+  if (!user) {
+    throw new UnauthorizedError("Unauthorized");
+  }
   try {
-    const user = req.user;
-    if (!user) {
-      throw new UnauthorizedError("Unauthorized");
-    }
     const newTodoData = createTodoValidator.parse(req.body);
     const todo = await createDbTodo({ ...newTodoData, userId: user.id });
     return res.status(201).json(todo);

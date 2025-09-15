@@ -1,6 +1,7 @@
 import express from "express";
-import usersRouter from "./routes/auth";
+import authRouter from "./routes/auth";
 import todosRouter from "./routes/todos";
+import usersRouter from "./routes/users";
 import { errorHandler } from "./middleware/errorHandler";
 import { authHandler } from "./middleware/authHandler";
 import path from "path";
@@ -16,7 +17,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(authHandler);
 
-app.use("/api/auth", usersRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/users", usersRouter);
+
 app.use("/api/todos", todosRouter);
 
 app.use(errorHandler);

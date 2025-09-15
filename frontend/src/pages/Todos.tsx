@@ -8,10 +8,14 @@ import { queryClient } from "../main";
 import type { FormEvent } from "react";
 import TodoCardList from "../components/TodoCardList";
 import { Plus } from "lucide-react";
+import { useAuth } from "../hooks/useAuth";
 
 function TodosPage() {
   const [content, setContent] = useState("");
   const [dueDate, setDueDate] = useState(new Date());
+
+  const auth = useAuth();
+  const userId = auth?.data?.user?.id;
 
   const getTodos = async (): Promise<SelectTodo[]> => {
     const response = await axios.get<SelectTodo[]>("/api/todos");
@@ -46,32 +50,37 @@ function TodosPage() {
   const todos: SelectTodo[] = todosQuery.data ?? [];
 
   return (
-    <main className={styles.todoMain}>
-      <div className={styles.formWrapper}>
-        <form onSubmit={submitHandler} className={styles.todoForm}>
-          <input
-            placeholder="Add a new todo..."
-            type="text"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <input
-            type="date"
-            value={dueDate.toISOString().split("T")[0]}
-            onChange={(e) => setDueDate(new Date(e.target.value))}
-          />
-          <button
-            className={styles.submitButton}
-            type="submit"
-            aria-label="Add todo"
-          >
-            <Plus />
-          </button>
-        </form>
-      </div>
+    <>
+      <main className={styles.todoMain}>
+        <p className={styles.userHeading}>User: {userId}'s todos</p>
+        <div>Insert profile pic here</div>
+        <button className={styles.profileButton}>Add Profile pic</button>
+        <div className={styles.formWrapper}>
+          <form onSubmit={submitHandler} className={styles.todoForm}>
+            <input
+              placeholder="Add a new todo..."
+              type="text"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+            <input
+              type="date"
+              value={dueDate.toISOString().split("T")[0]}
+              onChange={(e) => setDueDate(new Date(e.target.value))}
+            />
+            <button
+              className={styles.submitButton}
+              type="submit"
+              aria-label="Add todo"
+            >
+              <Plus />
+            </button>
+          </form>
+        </div>
 
-      <TodoCardList todos={todos} />
-    </main>
+        <TodoCardList todos={todos} />
+      </main>
+    </>
   );
 }
 
