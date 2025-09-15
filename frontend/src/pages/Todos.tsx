@@ -13,6 +13,7 @@ import { useAuth } from "../hooks/useAuth";
 function TodosPage() {
   const [content, setContent] = useState("");
   const [dueDate, setDueDate] = useState(new Date());
+  const [profilePic, setProfilePic] = useState(null);
 
   const auth = useAuth();
   const userId = auth?.data?.user?.id;
@@ -54,7 +55,13 @@ function TodosPage() {
       <main className={styles.todoMain}>
         <p className={styles.userHeading}>User: {userId}'s todos</p>
         <div>Insert profile pic here</div>
-        <button className={styles.profileButton}>Add Profile pic</button>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <input
+            onChange={(e) => console.log(e.target.value)}
+            type="file"
+            className={styles.profileButton}
+          ></input>
+        </form>
         <div className={styles.formWrapper}>
           <form onSubmit={submitHandler} className={styles.todoForm}>
             <input
