@@ -13,7 +13,7 @@ import { useAuth } from "../hooks/useAuth";
 function TodosPage() {
   const [content, setContent] = useState("");
   const [dueDate, setDueDate] = useState(new Date());
-  const [profilePic, setProfilePic] = useState(null);
+  const [profilePic, setProfilePic] = useState<File | null>(null);
 
   const auth = useAuth();
   const userId = auth?.data?.user?.id;
@@ -48,6 +48,23 @@ function TodosPage() {
     });
   }
 
+  const fileMutation = useMutation({
+    mutationFn: () => {
+      return axios.post("api/users/profile-picture", {
+        fileType: profilePic?.type,
+      });
+    },
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setProfilePic(e.target.files[0]);
+    }
+  };
+
   const todos: SelectTodo[] = todosQuery.data ?? [];
 
   return (
@@ -55,12 +72,24 @@ function TodosPage() {
       <main className={styles.todoMain}>
         <p className={styles.userHeading}>User: {userId}'s todos</p>
         <div>Insert profile pic here</div>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <input
-            onChange={(e) => console.log(e.target.value)}
-            type="file"
-            className={styles.profileButton}
-          ></input>
+        <form
+          className={styles.profileForm}
+          onSubmit={(e) => {
+            e.preventDefault();
+            fileMutation.mutate();
+          }}
+        >
+          <label htmlFor="profile-pic">
+            Profile pic
+            <input
+              accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+              name="profile-pic"
+              onChange={handleFileChange}
+              type="file"
+              className={styles.profileButton}
+            ></input>
+          </label>
+          <button className={styles.submit}>Submit Picture</button>
         </form>
         <div className={styles.formWrapper}>
           <form onSubmit={submitHandler} className={styles.todoForm}>
